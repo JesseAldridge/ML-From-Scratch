@@ -5,6 +5,8 @@ import random
 from sklearn import datasets
 import numpy as np
 
+import sys, os
+
 # Import helper functions
 from mlfromscratch.utils import Plot
 from mlfromscratch.unsupervised_learning import DBSCAN
@@ -16,6 +18,8 @@ def main():
     # Cluster the data using DBSCAN
     clf = DBSCAN(eps=0.17, min_samples=5)
     y_pred = clf.predict(X)
+
+    print('cluster count:', len(set(y_pred)))
 
     # Project the data onto the 2 primary principal components
     p = Plot()

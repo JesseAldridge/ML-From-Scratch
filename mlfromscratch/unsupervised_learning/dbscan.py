@@ -4,7 +4,7 @@ from mlfromscratch.utils import Plot, euclidean_distance, normalize
 
 
 class DBSCAN():
-    """A density based clustering method that expands clusters from 
+    """A density based clustering method that expands clusters from
     samples that have more neighbors within a radius specified by eps
     than the value min_samples.
 
@@ -13,7 +13,7 @@ class DBSCAN():
     eps: float
         The radius within which samples are considered neighbors
     min_samples: int
-        The number of neighbors required for the sample to be a core point. 
+        The number of neighbors required for the sample to be a core point.
     """
     def __init__(self, eps=1, min_samples=5):
         self.eps = eps
@@ -24,8 +24,9 @@ class DBSCAN():
         A sample_2 is considered a neighbor of sample_1 if the distance between
         them is smaller than epsilon """
         neighbors = []
-        idxs = np.arange(len(self.X))
-        for i, _sample in enumerate(self.X[idxs != sample_i]):
+        for i, _sample in enumerate(self.X):
+            if i == sample_i:
+              continue
             distance = euclidean_distance(self.X[sample_i], _sample)
             if distance < self.eps:
                 neighbors.append(i)
